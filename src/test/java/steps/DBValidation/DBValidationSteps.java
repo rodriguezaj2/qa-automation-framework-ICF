@@ -1,4 +1,4 @@
-package steps;
+package steps.DBValidation;
 
 import io.cucumber.java.en.Then;
 import utils.DBUtils;
