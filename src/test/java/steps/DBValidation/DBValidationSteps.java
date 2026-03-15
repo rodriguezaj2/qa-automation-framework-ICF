@@ -1,6 +1,7 @@
 package steps.DBValidation;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.messages.ndjson.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import utils.DBUtils;
 
 import java.util.List;
@@ -9,13 +10,15 @@ import java.util.Map;
 public class DBValidationSteps {
 
     @Then("the added person's record is stored in the database")
-    public void the_added_person_s_record_is_stored_in_the_database() {
+    public void the_added_person_s_record_is_stored_in_the_database() throws Exception {
         String query = "SELECT * FROM public.\"Record\" ORDER BY id DESC LIMIT 1";
-        List<Map<String,String>> employeeData= DBUtils.fetch(query);
-        String dbFirstName=employeeData.get(0).get("firstName");
-        String dbLastName=employeeData.get(0).get("lastName");
+        List<Map<String,String>> recordsData= DBUtils.fetch(query);
 
-        System.out.println(dbFirstName);
-        System.out.println(dbLastName);
+        Map<String, String> record = recordsData.get(0);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResponse = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(record);
+
+        System.out.println(jsonResponse);
     }
 }

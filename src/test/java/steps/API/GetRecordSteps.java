@@ -3,11 +3,16 @@ package steps.API;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.messages.ndjson.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import steps.UI.CreateRecordSteps;
 import utils.APIConstants;
 import utils.ConfigReader;
 import utils.TokenGeneration;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,30 +22,32 @@ public class GetRecordSteps {
     Response resp;
     public static String firstName;
     String email = ConfigReader.read("email");
+    public static int recordID;
 
     @Given("a request is prepared to retrieve a person's record with email query")
     public void a_request_is_prepared_to_retrieve_a_person_s_record_with_email_query() {
-        req=given().cookies(TokenGeneration.authCookies).header(APIConstants.HEADER_CONTENT_TYPE_KEY,APIConstants.HEADER_CONTENT_TYPE_VALUE).accept(APIConstants.HEADER_CONTENT_TYPE_VALUE).queryParam("email" , email);
-        System.out.println("This is email " + email);
-        System.out.println("Email being passed is: " + email);
+        req=given().cookies(TokenGeneration.authCookies).header(APIConstants.HEADER_CONTENT_TYPE_KEY,APIConstants.HEADER_CONTENT_TYPE_VALUE)
+                .accept(APIConstants.HEADER_CONTENT_TYPE_VALUE).queryParam("email" , email);
 
     }
     @When("a GET call is made to retrieve a person's record")
-    public void a_get_call_is_made_to_retrieve_a_person_s_record() {
+    public void a_get_call_is_made_to_retrieve_a_person_s_record() throws Exception {
         resp = req.when().get(APIConstants.GET_USER_BY_QUERY);
-        firstName=resp.jsonPath().getString("records.firstName");
-        System.out.println("These are first names " + firstName);
-        resp.prettyPrint();
 
-        /*resp = req
-                .log().all()
-                .when()
-                .get(APIConstants.GET_USER_BY_QUERY);*/
 
-        System.out.println("Content-Type: " + resp.getContentType());
-        System.out.println("Response body: " + resp.getBody().asString());
+        List<Map<String, Object>> createdRecords = resp.jsonPath()
+                .getList("records.findAll { it.firstName == '" + CreateRecordSteps.firstName +
+                        "' && it.lastName == '" + CreateRecordSteps.lastName + "' }");
 
-        System.out.println("This is the response we are getting "+ resp.getContentType());
+        Map<String, Object> latestMatch = createdRecords.get(createdRecords.size() - 1);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String prettyJson = mapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(latestMatch);
+
+        System.out.println(prettyJson);
+
 
     }
     @Then("response code should be {int}")
@@ -48,7 +55,7 @@ public class GetRecordSteps {
         int actualStatusCode = resp.getStatusCode();
         resp.then().statusCode(statusCode);
         System.out.println("Query status code is "+ actualStatusCode);
-        System.out.println("Print URL " + APIConstants.GET_USER_BY_QUERY);
+
 
     }
     @Then("the response should match the person's record")

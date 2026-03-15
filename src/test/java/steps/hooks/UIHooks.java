@@ -1,11 +1,11 @@
-package steps;
+package steps.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.CommonMethods;
 
-public class Hooks extends CommonMethods {
+public class UIHooks extends CommonMethods {
 
     @Before("@ui")
     public void start(){
@@ -25,13 +25,5 @@ public class Hooks extends CommonMethods {
         closeBrowser();
     }
 
-    @Before("@Hybrid")
-    public void startHybrid(){
-        openBrowserAndLaunchApplication();
-    }
 
-    @After("@Hybrid")
-    public void endHybrid(){
-        closeBrowser();
-    }
 }

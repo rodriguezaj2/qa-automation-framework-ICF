@@ -17,6 +17,7 @@ Background:
       And the user selects "<otherStay>" as the Other stay value
       And the user clicks the Update button
       Then the household member should be added successfully with a message containing the text "<confirmation>"
+      Then the added person's record is stored in the database
 
       Examples:
         | relationship       | firstName | lastName      | dob        | gender | hispanic     | race          | otherStay                     | confirmation                      |

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/UI",
         glue = "steps",
         dryRun = false,
-        tags = "@DBValidation",
+        tags = "@household",
         plugin = {"pretty","html:target/cucumber.html","rerun:target/failed.txt","json:target/cucumber.json"}
 )
 

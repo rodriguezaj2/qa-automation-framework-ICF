@@ -30,6 +30,7 @@ public class LoginSteps extends CommonMethods {
     public void user_clicks_on_menu_button() {
         click(aboutPage.menuButton);
     }
+
     @When("user clicks sign in")
     public void user_clicks_sign_in() {
         click(aboutPage.signInButton);

@@ -11,7 +11,7 @@ public class TokenGenerationSteps {
 
         TokenGeneration tokenGeneration = new TokenGeneration();
         int actualStatusCode = tokenGeneration.token(expectedStatusCode);
-        System.out.println("The status code is " + expectedStatusCode);
+
     }
 
 }
