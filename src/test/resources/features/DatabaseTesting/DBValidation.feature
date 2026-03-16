@@ -8,3 +8,4 @@ Feature: Verify records are being stored in the database
     Scenario:
       When a record is created in the UI
       Then the added person's record is stored in the database
+      And the record in the database matches the created data

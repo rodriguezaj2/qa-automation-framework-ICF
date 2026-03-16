@@ -12,5 +12,5 @@
         Given a request is prepared to retrieve a person's record with email query
         When a GET call is made to retrieve a person's record
         Then response code should be 200
-       # And the response should match the person's record
+        And the response should match the person's record
 

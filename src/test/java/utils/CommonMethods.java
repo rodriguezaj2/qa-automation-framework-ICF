@@ -144,4 +144,9 @@ public class CommonMethods extends PageInitializer{
         return sdf.format(date);
 
     }
+
+    public void waitForOverlayToDisappear(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }

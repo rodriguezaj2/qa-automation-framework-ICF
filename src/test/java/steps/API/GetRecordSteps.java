@@ -6,9 +6,11 @@ import io.cucumber.java.en.When;
 import io.cucumber.messages.ndjson.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assert;
 import steps.UI.CreateRecordSteps;
 import utils.APIConstants;
 import utils.ConfigReader;
+import utils.DBUtils;
 import utils.TokenGeneration;
 
 import java.util.List;
@@ -22,7 +24,9 @@ public class GetRecordSteps {
     Response resp;
     public static String firstName;
     String email = ConfigReader.read("email");
-    public static int recordID;
+    Map<String, Object> latestMatch;
+    public static int apiID;
+    public static int dbID;
 
     @Given("a request is prepared to retrieve a person's record with email query")
     public void a_request_is_prepared_to_retrieve_a_person_s_record_with_email_query() {
@@ -39,7 +43,7 @@ public class GetRecordSteps {
                 .getList("records.findAll { it.firstName == '" + CreateRecordSteps.firstName +
                         "' && it.lastName == '" + CreateRecordSteps.lastName + "' }");
 
-        Map<String, Object> latestMatch = createdRecords.get(createdRecords.size() - 1);
+        latestMatch = createdRecords.get(createdRecords.size() - 1);
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -54,13 +58,16 @@ public class GetRecordSteps {
     public void response_code_should_be(Integer statusCode) {
         int actualStatusCode = resp.getStatusCode();
         resp.then().statusCode(statusCode);
-        System.out.println("Query status code is "+ actualStatusCode);
-
 
     }
     @Then("the response should match the person's record")
     public void the_response_should_match_the_person_s_record() {
+        apiID =(Integer) latestMatch.get("id");
 
+        Map<String, String> record = DBUtils.getLatestRecord();
+        dbID = Integer.parseInt(record.get("id"));
+
+        Assert.assertEquals(apiID,dbID);
     }
 
 }

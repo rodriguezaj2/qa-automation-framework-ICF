@@ -74,8 +74,8 @@ public class CreateRecordSteps extends CommonMethods {
     @Given("a record is created in the UI")
     public void a_record_is_created_in_the_ui() {
 
-        firstName = "Peter";
-        lastName = "Griffin";
+        firstName = "Best";
+        lastName = "Name";
         addHouseholdMemberModal.createMember(
 
 

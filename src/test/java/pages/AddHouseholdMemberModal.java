@@ -218,6 +218,18 @@ public class AddHouseholdMemberModal extends CommonMethods {
 
     }
 
+    public WebElement getCreatedFirstName(String name) {
+        return driver.findElement(By.xpath("//label[text()='First name']/following-sibling::input[@value='" + name + "']"));
+    }
+
+    public WebElement getCreatedLastName(String lastName) {
+        return driver.findElement(By.xpath("//label[text()='Last name']/following-sibling::input[@value='" + lastName + "']")
+        );
+    }
+
+    @FindBy (xpath = "//button[text()='OK']")
+    public WebElement okButton;
+
     public AddHouseholdMemberModal(){
         PageFactory.initElements(driver,this);
     }

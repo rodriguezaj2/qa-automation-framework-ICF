@@ -35,4 +35,22 @@ public class DBUtils {
         }
         return tableData;
     }
+
+    public static Map<String, String> getLatestRecord() {
+        String query = "SELECT * FROM public.\"Record\" ORDER BY id DESC LIMIT 1";
+        List<Map<String, String>> recordsData = DBUtils.fetch(query);
+        return recordsData.get(0);
+    }
+
+    public static Map<String, String> getRecordById(int id) {
+        String query = "SELECT * FROM public.\"Record\" WHERE id = " + id;
+        List<Map<String, String>> recordsData = DBUtils.fetch(query);
+
+        if(recordsData.isEmpty()){
+            return null;
+        }
+
+        return recordsData.get(0);
+    }
+
 }
