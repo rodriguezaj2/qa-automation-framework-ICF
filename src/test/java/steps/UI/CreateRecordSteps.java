@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 import utils.CommonMethods;
 import utils.HouseholdMember;
+import utils.ScenarioContext;
 
 public class CreateRecordSteps extends CommonMethods {
 
@@ -76,6 +77,9 @@ public class CreateRecordSteps extends CommonMethods {
 
         firstName = "Best";
         lastName = "Name";
+        ScenarioContext.firstName = firstName;
+        ScenarioContext.lastName = lastName;
+
         addHouseholdMemberModal.createMember(
 
 

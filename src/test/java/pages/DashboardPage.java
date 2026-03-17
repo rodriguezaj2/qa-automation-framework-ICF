@@ -18,8 +18,6 @@ public class DashboardPage extends CommonMethods {
 
     public void clickLastDeleteButton() {
 
-       // waitForOverlayToDisappear(By.xpath("//div[contains(@class,'bg-black/80')]"));
-
         List<WebElement> deleteButtons = driver.findElements(By.xpath("//button[@name='delete-record-button btn']"));
 
         WebElement lastDelete = deleteButtons.get(deleteButtons.size() - 1);

@@ -9,12 +9,15 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.restassured.response.Response;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class CommonMethods extends PageInitializer{
 
@@ -148,5 +151,20 @@ public class CommonMethods extends PageInitializer{
     public void waitForOverlayToDisappear(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    public static Map<String, Object> getLatestRecordByName(Response resp, String firstName, String lastName) {
+
+        List<Map<String, Object>> createdRecords = resp.jsonPath()
+                .getList("records.findAll { it.firstName == '" + firstName +
+                        "' && it.lastName == '" + lastName + "' }");
+
+        if (createdRecords.isEmpty()) {
+            throw new RuntimeException("No records found for: " + firstName + " " + lastName);
+        }
+
+        Map<String, Object> latestMatch = createdRecords.get(createdRecords.size() - 1);
+
+        return latestMatch;
     }
 }
