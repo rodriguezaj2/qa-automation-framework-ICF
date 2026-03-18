@@ -97,6 +97,7 @@
                     <includes>
                         <include>**/*UITestRunner.java</include>
                         <include>**/*APITestRunner.java</include>
+                        <include>**/*DatabaseTestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>

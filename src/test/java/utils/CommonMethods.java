@@ -167,4 +167,12 @@ public class CommonMethods extends PageInitializer{
 
         return latestMatch;
     }
+
+    public static void pauseTestingOnly(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -40,11 +40,7 @@ public class GetRecordSteps extends CommonMethods {
         lastName = ScenarioContext.lastName;
         ScenarioContext.resp = resp;
 
-        latestMatch = getLatestRecordByName(
-                resp,
-                ScenarioContext.firstName,
-                ScenarioContext.lastName
-        );
+        latestMatch = getLatestRecordByName(resp, ScenarioContext.firstName, ScenarioContext.lastName);
 
 
         ObjectMapper mapper = new ObjectMapper();
@@ -53,8 +49,7 @@ public class GetRecordSteps extends CommonMethods {
         ScenarioContext.personRecord = personRecord;
         ScenarioContext.apiID = personRecord.getId();
 
-        String prettyJson = mapper.writerWithDefaultPrettyPrinter()
-                .writeValueAsString(latestMatch);
+        String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(latestMatch);
 
         System.out.println(prettyJson);
 
