@@ -1,4 +1,4 @@
-@Hybrid
+@ui
 Feature: Delete household member record
 
   Background:

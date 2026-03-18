@@ -32,13 +32,12 @@ public class DBValidationSteps {
         String dbFirstName = record.get("firstName");
         String dbLastName = record.get("lastName");
 
-       /* System.out.println("This is first name " + uiFirstName);
-        System.out.println("This is last name " + uiLastName);*/
+        System.out.println("This is first name " + uiFirstName);
+        System.out.println("This is last name " + uiLastName);
 
         Assert.assertEquals(uiFirstName,dbFirstName);
         Assert.assertEquals(uiLastName,dbLastName);
 
     }
-
 
 }

@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 import utils.CommonMethods;
-import utils.HouseholdMember;
 import utils.ScenarioContext;
 
 public class CreateRecordSteps extends CommonMethods {

@@ -53,7 +53,7 @@ public class CommonMethods extends PageInitializer{
                 throw new RuntimeException("Invalid Browser Name");
         }
         //maximize the window - commenting this out only because screen is too big
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
         //navigate to Syntax website

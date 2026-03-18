@@ -121,14 +121,18 @@
                             <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
                                 <!-- supports wildcard or name pattern -->
-                                <param>**/*.json</param>
+                                <param>api-cucumber.json</param>
                             </jsonFiles>
                             <!-- optional, defaults to outputDirectory if not specified -->
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
 </project>
+
+
+<!--        **/*.json-->

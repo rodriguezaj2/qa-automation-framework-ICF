@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = "steps",
         dryRun = false,
         tags = "@DBValidation",
-        plugin = {"pretty","html:target/cucumber.html","rerun:target/failed.txt","json:target/cucumber.json"}
+        plugin = {"pretty", "html:target/db-cucumber.html", "json:target/db-cucumber.json", "rerun:target/db-failed.txt"}
 )
 
 public class DatabaseTestRunner {

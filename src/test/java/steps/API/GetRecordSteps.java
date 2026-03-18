@@ -56,9 +56,10 @@ public class GetRecordSteps extends CommonMethods {
         String prettyJson = mapper.writerWithDefaultPrettyPrinter()
                 .writeValueAsString(latestMatch);
 
-       /* System.out.println(prettyJson);
+        System.out.println(prettyJson);
+
         System.out.println("This is person record ID " + ScenarioContext.personRecord.getId());
-        System.out.println("This is person record DOB " + ScenarioContext.personRecord.getDob());*/
+        System.out.println("This is person record DOB " + ScenarioContext.personRecord.getDob());
 
 
     }
@@ -71,7 +72,7 @@ public class GetRecordSteps extends CommonMethods {
     @Then("the response should match the person's record")
     public void the_response_should_match_the_person_s_record() {
 
-        int apiID = ScenarioContext.apiID;
+        int apiID = ScenarioContext.personRecord.getId();
 
         Map<String, String> record = DBUtils.getLatestRecord();
         int dbID = Integer.parseInt(record.get("id"));

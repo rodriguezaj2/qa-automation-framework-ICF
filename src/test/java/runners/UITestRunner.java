@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/UI",
         glue = "steps",
         dryRun = false,
-        tags = "@deleteRecord",
-        plugin = {"pretty","html:target/cucumber.html","rerun:target/failed.txt","json:target/cucumber.json"}
+        tags = "@login",
+        plugin = {"pretty", "html:target/ui-cucumber.html", "json:target/ui-cucumber.json", "rerun:target/ui-failed.txt"}
 )
 
 public class UITestRunner {
