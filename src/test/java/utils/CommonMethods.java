@@ -175,4 +175,21 @@ public class CommonMethods extends PageInitializer{
             e.printStackTrace();
         }
     }
+
+    public void selectHiddenDropdownValue(WebElement element, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].value = arguments[1];" +
+                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                element,
+                value
+        );
+    }
+
+    public void jsClick(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
 }

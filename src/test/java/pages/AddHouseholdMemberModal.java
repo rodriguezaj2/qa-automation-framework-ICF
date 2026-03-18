@@ -48,13 +48,7 @@ public class AddHouseholdMemberModal extends CommonMethods {
     public void selectMonthFromHiddenDropdown(String month) {
         String monthValue = String.valueOf(Integer.parseInt(month) - 1);
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].value = arguments[1];" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                monthDropdown,
-                monthValue);
-
+        selectHiddenDropdownValue(monthDropdown, monthValue);
     }
 
     public void selectDay(String month, String day, String year) {
@@ -66,19 +60,12 @@ public class AddHouseholdMemberModal extends CommonMethods {
 
         waitForElementToBeClickable(dayButton);
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", dayButton);
+        jsClick(dayButton);
 
     }
 
     public void selectYearFromHiddenDropdown(String year) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].value = arguments[1];" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                yearDropdown,
-                year
-        );
+        selectHiddenDropdownValue(yearDropdown, year);
     }
 
 
@@ -127,16 +114,7 @@ public class AddHouseholdMemberModal extends CommonMethods {
     public WebElement hispanicSelect;
 
     public void selectHispanic(String hispanic){
-        //click(hispanicDropdown);
-
-        //WebElement hispanicSelect = driver.findElement(By.xpath("//label[text()='Hispanic']/following-sibling::select/option[@value='" + hispanic + "']"));
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].value = arguments[1];" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                hispanicSelect,
-                hispanic);
+        selectHiddenDropdownValue(hispanicSelect, hispanic);
     }
 
 
@@ -147,13 +125,7 @@ public class AddHouseholdMemberModal extends CommonMethods {
     public WebElement raceSelect;
 
     public void selectRace(String race){
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].value = arguments[1];" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                raceSelect,
-                race);
+        selectHiddenDropdownValue(raceSelect, race);
     }
 
     @FindBy (id = "//label[text()='Other stay']/following-sibling::button")
@@ -163,13 +135,7 @@ public class AddHouseholdMemberModal extends CommonMethods {
     public WebElement otherStaySelect;
 
     public void selectOtherStay(String otherStay){
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].value = arguments[1];" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                otherStaySelect,
-                otherStay);
+        selectHiddenDropdownValue(otherStaySelect, otherStay);
 
     }
 
